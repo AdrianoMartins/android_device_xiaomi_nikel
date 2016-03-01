@@ -10,12 +10,6 @@ on post-fs-data
 
     # Modem related device nodes
     mkdir /data/nvram/md  0770 root system
-
-#  Build-in Modified - S
-#    insmod /system/lib/modules/ccci_plat.ko
-#    insmod /system/lib/modules/ccci.ko
-#  Build-in Modified - E
-#   chown radio radio /sys/class/BOOT/BOOT/boot/md
     chown radio radio /sys/kernel/ccci/boot
 
 #SeLinux
@@ -27,14 +21,14 @@ on post-fs-data
 service gsm0710muxd /system/bin/gsm0710muxd -s /dev/ttyC0 -f 512 -n 8 -m basic
     class core
     user root
-    group radio cache inet misc
+    group root
     disabled
     oneshot
 
 service gsm0710muxdmd2 /system/bin/gsm0710muxdmd2 -s /dev/ccci2_tty0 -f 512 -n 8 -m basic
     class core
     user root
-    group radio cache inet misc
+    group root
     disabled
     oneshot
     
@@ -93,27 +87,27 @@ service permission_check /system/bin/permission_check
     group system radio
     oneshot
 
-service ccci_fsd /system/bin/ccci_fsd 0
-    user radio
-    group radio system
-    class core
-    oneshot
+#service ccci_fsd /system/bin/ccci_fsd 0
+#    user root
+#    group root
+#    class core
+#    oneshot
 
-service ccci_mdinit /system/bin/ccci_mdinit 0
-    user system
-    group radio system
-    class core
-    oneshot
+#service ccci_mdinit /system/bin/ccci_mdinit 0
+#    user root
+#    group root
+#    class core
+#    oneshot
 
 service ccci_rpcd /system/bin/ccci_rpcd 0
-    user radio
-    group radio system
+    user root
+    group root
     class core
     oneshot
 
 service pppd_gprs /system/bin/pppd_dt /dev/ttyACM0 debug noauth refuse-eap usepeerdns nodetach
     user root
-    group radio cache inet misc
+    group root
     disabled
     oneshot
 

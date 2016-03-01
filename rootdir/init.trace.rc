@@ -1,6 +1,6 @@
 ## Permissions to allow system-wide tracing to the kernel trace buffer.
 ##
-on early-boot
+on boot
 
 # Allow writing to the kernel trace log.
     mount debugfs debugfs /sys/kernel/debug

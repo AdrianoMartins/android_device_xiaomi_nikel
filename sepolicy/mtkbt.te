@@ -45,7 +45,6 @@ allow mtkbt nvram_data_file:lnk_file read;
 allow mtkbt nvram_data_file:dir { write add_name search};
 allow mtkbt nvdata_file:file { create setattr read write getattr open };
 allow mtkbt nvdata_file:dir { write add_name search };
-allow mtkbt system_data_file:file create;
 
 allow mtkbt block_device:dir search;
 allow mtkbt bt_data_file:dir search;
@@ -139,7 +138,6 @@ allow mtkbt shell:file { read getattr open };
 allow mtkbt stpbt_device:chr_file { read write ioctl getattr open };
 allow mtkbt surfaceflinger:dir search;
 allow mtkbt surfaceflinger:file { read getattr open };
-allow mtkbt system_data_file:file { write open };
 allow mtkbt thermal:dir search;
 allow mtkbt thermal:file { read getattr open };
 allow mtkbt thermald:dir search;

@@ -62,7 +62,6 @@ allow nvram_daemon platformblk_device:dir search;
 # Purpose: for property set
 allow nvram_daemon property_socket:sock_file write;
 allow nvram_daemon sysfs:file write;
-allow nvram_daemon system_data_file:file { write open setattr create};
 allow nvram_daemon self:capability { fowner chown dac_override fsetid };
 
 allow nvram_daemon system_data_file:dir {create write add_name};

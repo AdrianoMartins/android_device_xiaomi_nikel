@@ -185,11 +185,6 @@ allow system_server proc_secmem:file { rw_file_perms };
 allow system_server dex2oat_exec:file rx_file_perms;
 
 # Date: WK14.47
-# Operation : Sanity
-# Purpose : for searching directories in sdcard by VoldConnector
-allow system_server fuse:dir r_dir_perms;
-
-# Date: WK14.47
 # Operation : CTS
 # Purpose : for executing recovery.dex
 allow system_server system_data_file:file execute;
@@ -227,5 +222,4 @@ unix_socket_connect(system_server, wod_sim, epdg_wod)
 
 # Date: WK15.05
 # Purpose : for kill-switch should only grant to access frp partition, to be fix
-allow system_server platformblk_device:blk_file { ioctl getattr open write read };
 allow system_server platformblk_device:dir search;

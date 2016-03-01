@@ -81,7 +81,6 @@ allow ipod debugfs:file { open read getattr };
 
 # IPOH
 allow ipod system_data_file:dir { open read write add_name create remove_name };
-allow ipod system_data_file:file { create open write ioctl setattr };
 allow ipod cache_file:dir { open read write add_name create remove_name };
 allow ipod cache_file:file { create open write ioctl setattr };
 allow ipod proc_lk_env:file { open read write };

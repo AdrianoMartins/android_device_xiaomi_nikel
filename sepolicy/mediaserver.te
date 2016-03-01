@@ -276,7 +276,6 @@ allow mediaserver persist_data_file:file { read write create open getattr };
 allow mediaserver proc_mtkcooler:dir search;
 allow mediaserver proc_mtktz:dir search;
 allow mediaserver proc_thermal:dir search;
-allow mediaserver system_data_file:file write;
 
 # Date : WK14.46
 # Operation : Migration
@@ -348,7 +347,6 @@ allow mediaserver thermal_manager_exec:file { getattr execute read open execute_
 allow mediaserver proc_mtkcooler:file { read write open };
 allow mediaserver proc_mtktz:file { read write open };
 allow mediaserver proc_thermal:file { read write open };
-allow mediaserver system_data_file:file setattr;
 
 # Date : WK14.52
 # Operation : WVL1 IT
@@ -360,8 +358,3 @@ allow mediaserver proc_secmem:file ioctl;
 # Operation : Migration
 # Purpose : offloadservice
 allow mediaserver offloadservice_device:chr_file { read write ioctl open };
-
-# Date : WK15.11
-# Operation : SRS
-# Purpose : SRS
-allow mediaserver system_data_file:file { getattr open read ioctl lock append write };

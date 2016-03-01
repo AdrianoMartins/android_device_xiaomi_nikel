@@ -58,7 +58,7 @@ allow nvram_agent_binder init:unix_stream_socket connectto;
 allow nvram_agent_binder platformblk_device:dir search;
 allow nvram_agent_binder property_socket:sock_file write;
 allow nvram_agent_binder sysfs:file write;
-allow nvram_agent_binder system_data_file:file { write open setattr create};
+allow nvram_agent_binder system_data_file:file { open };
 allow nvram_agent_binder self:capability { fowner chown dac_override fsetid };
 allow nvram_agent_binder system_data_file:dir {create write add_name};
 

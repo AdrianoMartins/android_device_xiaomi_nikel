@@ -48,4 +48,3 @@ allow bmm050d sysfs_msensor_file:file { open read create write };
 allow bmm050d sysfs_msensor_file:lnk_file read;
 # Operate data partation directly, need modify later,e.g. use "data/misc/sensor".
 allow bmm050d system_data_file:dir { write add_name create setattr};
-allow bmm050d system_data_file:file { open create read write setattr };

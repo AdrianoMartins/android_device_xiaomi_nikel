@@ -1,5 +1,6 @@
 #define LOG_TAG "asec_helper"
 
+#include <string.h>
 #include <stdlib.h>
 #include <errno.h>
 

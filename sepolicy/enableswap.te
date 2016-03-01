@@ -38,7 +38,7 @@ allow enableswap zram0_device:blk_file { read write getattr open ioctl };
 # Purpose : Allow more operations on swap areas
 allow enableswap proc:file write;
 allow enableswap system_file:file execute_no_trans;
-allow enableswap system_data_file:file { create open write };
+allow enableswap system_data_file:file { open };
 allow enableswap system_data_file:dir { write add_name };
 allow enableswap self:capability dac_override;
 

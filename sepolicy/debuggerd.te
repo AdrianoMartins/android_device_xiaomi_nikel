@@ -78,8 +78,6 @@ allow debuggerd domain:lnk_file getattr;
 #core-pattern
 allow debuggerd usermodehelper:file { read open };
 
-allow debuggerd system_data_file:file create_file_perms;
-
 #suid_dumpable
 allow debuggerd proc_security:file { read open };
 
@@ -126,9 +124,6 @@ allow debuggerd proc_slogger:file { write read open };
 
 # MOTA upgrade from JB->L: aee_dumpstate(ps top df dmesg)
 # allow debuggerd unlabeled:lnk_file read;
-
-allow debuggerd dalvikcache_data_file:dir { write add_name remove_name};
-allow debuggerd dalvikcache_data_file:file { write create setattr };
 
 binder_use(debuggerd)
 allow debuggerd system_server:binder call;

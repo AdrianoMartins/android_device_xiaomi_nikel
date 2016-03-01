@@ -78,14 +78,6 @@ allow nfc self:tcp_socket { setopt read bind create accept write getattr connect
 # ==============================================
 # Date      : 2014/10/15  
 # Operation : Refine
-# Purpose   : For Gallery3d
-
-allow nfc init:binder { transfer };
-
-
-# ==============================================
-# Date      : 2014/10/15  
-# Operation : Refine
 # Purpose   : For NFC-JNI
 
 allow nfc zygote:unix_stream_socket { getopt getattr };

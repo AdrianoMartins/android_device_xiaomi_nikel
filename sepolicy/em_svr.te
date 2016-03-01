@@ -59,7 +59,6 @@ allow em_svr proc_mtktz:dir search;
 allow em_svr proc_mtktz:file  { read getattr open write };
 allow em_svr proc_slogger:file { read getattr open write };
 allow em_svr system_data_file:dir { write remove_name add_name relabelfrom create open };
-allow em_svr system_data_file:file { write create unlink open setattr rename };
 allow em_svr kernel:system module_request;
 allow em_svr fuse:dir create_dir_perms;
 allow em_svr fuse:file create_file_perms;

@@ -24,8 +24,6 @@ allow mnld init:unix_stream_socket connectto;
 allow mnld property_socket:sock_file rw_file_perms;
 allow mnld system_data_file:dir rw_dir_perms;
 allow mnld system_data_file:dir create_dir_perms;
-allow mnld system_data_file:file rw_file_perms;
-allow mnld system_data_file:file create_file_perms;
 allow mnld system_server:unix_dgram_socket sendto;
 allow mnld system_data_file:sock_file create_file_perms;
 allow mnld platformblk_device:blk_file rw_file_perms;

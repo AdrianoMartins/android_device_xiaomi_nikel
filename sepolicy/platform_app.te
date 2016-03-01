@@ -20,7 +20,6 @@ allow platform_app fm_device:chr_file rw_file_perms;
 # Operation: Migration
 # Purpose: enable drawing picture/texture in OpenGl environment for gallery3d
 # Package: com.android.gallery3d
-allow platform_app init:binder transfer;
 # add debugfs policy for MMProfile
 allow platform_app debugfs:file { read ioctl };
 

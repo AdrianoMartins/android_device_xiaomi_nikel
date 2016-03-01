@@ -46,7 +46,6 @@ allow meta_tst self:udp_socket { create ioctl };
 allow meta_tst stpbt_device:chr_file { read write open };
 allow meta_tst sysfs:file write;
 allow meta_tst system_data_file:dir { write remove_name add_name };
-allow meta_tst system_data_file:file { write create unlink open };
 allow meta_tst system_data_file:sock_file unlink;
 allow meta_tst ttyGS_device:chr_file { read write ioctl open };
 allow meta_tst wmtWifi_device:chr_file { write open };
@@ -122,7 +121,6 @@ allow meta_tst eemcs_device:chr_file { read write ioctl open };
 allow meta_tst mobicore_data_file:file getattr;
 allow meta_tst shell_exec:file { read open execute_no_trans };
 allow meta_tst system_data_file:dir create;
-allow meta_tst system_data_file:file { setattr append };
 
 # Date: WK14.51
 # Purpose : set/get cryptfs cfg in sys env

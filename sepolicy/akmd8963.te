@@ -35,4 +35,3 @@ allow akmd8963 akmd8963_access_file1:file { open read write };
 allow akmd8963 akmd8963_access_file2:file { open read write};
 # Operate data partation directly, need modify later,e.g. use "data/misc/sensor".
 allow akmd8963 system_data_file:dir { write add_name create setattr };
-allow akmd8963 system_data_file:file { open write read create setattr};

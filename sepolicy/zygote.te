@@ -29,7 +29,6 @@ dontaudit zygote untrusted_app:process ptrace;
 # Operation : Migration 
 # Purpose : for dump hprof when OOME
 allow zygote anr_data_file:dir *;
-allow zygote anr_data_file:file ~{ execute entrypoint };
 
 # Date : WK14.43
 # Operation : SQC2

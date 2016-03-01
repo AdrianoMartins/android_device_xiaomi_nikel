@@ -30,7 +30,6 @@ allow adbd block_device:dir search;
 allow adbd kernel:process setsched;
 allow adbd self:capability { net_raw ipc_lock dac_override };
 allow adbd system_data_file:dir { write remove_name add_name };
-allow adbd system_data_file:file { write create unlink open setattr };
 allow adbd tmpfs:lnk_file read;
 
 # Date : WK14.46

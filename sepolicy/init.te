@@ -13,10 +13,3 @@ allow init nvdata_file:dir { write search setattr read create open add_name };
 # Operation : Migration
 # Purpose : for L : add for partition
 allow init platformblk_device:blk_file setattr;
-
-# Date : W14.43
-# Operation : Migration
-# Purpose : for L : add for ape playback
-
-allow init MtkCodecService_exec:file execute_no_trans;
-

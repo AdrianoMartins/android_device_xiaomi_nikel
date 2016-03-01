@@ -77,7 +77,7 @@ allow vold data_tmpfs_log_file:dir { setattr getattr read create write rmdir rel
 allow vold data_tmpfs_log_file:file { write setattr getattr relabelto create unlink open };
 # mount crypto block device to /data/tmp_mnt/data_tmpfs_log and restorecon
 allow vold system_data_file:dir { relabelfrom relabelto setattr };
-allow vold system_data_file:file { relabelfrom relabelto};
+allow vold system_data_file:file { relabelto };
 
 # Date : WK14.49
 # Purpose : ptrace process

@@ -30,7 +30,6 @@ allow statusd self:udp_socket { create ioctl };
 allow statusd statusd_socket:sock_file { write setattr };
 allow statusd sysfs_wake_lock:file { read write open };
 allow statusd system_data_file:dir { write add_name };
-allow statusd system_data_file:file { open write create };
 allow statusd system_data_file:sock_file { write create setattr };
 allow statusd system_file:file execute_no_trans;
 allow statusd ttyMT_device:chr_file { read write ioctl open };

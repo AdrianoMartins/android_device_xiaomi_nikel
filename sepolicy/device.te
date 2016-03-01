@@ -121,7 +121,6 @@ type protect_s_device, dev_type;
 type psaux_device, dev_type;
 type ptyp_device, dev_type;
 type recovery_device, dev_type;
-type rtc_device, dev_type;
 type sec_ro_device, dev_type;
 type seccfg_device, dev_type;
 type tee_part_device, dev_type;

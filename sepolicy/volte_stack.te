@@ -33,7 +33,7 @@ allow volte_stack port:tcp_socket name_bind;
 allow volte_stack port:udp_socket name_bind;
 allow volte_stack fwmarkd_socket:sock_file write;
 allow volte_stack system_data_file:dir { write remove_name add_name };
-allow volte_stack system_data_file:file { rename write ioctl create unlink open append };
+allow volte_stack system_data_file:file { ioctl open };
 allow volte_stack system_file:file execute_no_trans;
 
 # Date : 2015/01/07

@@ -23,7 +23,8 @@ else
 endif
 
 PRODUCT_PACKAGES += \
-   libxlog
+   libxlog \
+   libstlport
 
 PRODUCT_COPY_FILES += \
    $(LOCAL_KERNEL):prebuilt/kernel
@@ -66,7 +67,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/enableswap.sh:root/enableswap.sh \
     $(LOCAL_PATH)/rootdir/factory_init.project.rc:root/factory_init.project.rc \
     $(LOCAL_PATH)/rootdir/factory_init.rc:root/factory_init.rc \
-    $(LOCAL_PATH)/rootdir/fstab.charger:root/fstab.charger\
+    $(LOCAL_PATH)/rootdir/fstab.charger:root/fstab.charger \
     $(LOCAL_PATH)/rootdir/fstab.mt6735:root/fstab.mt6735 \
     $(LOCAL_PATH)/rootdir/init.aee.rc:root/init.aee.rc \
     $(LOCAL_PATH)/rootdir/init.modem.rc:root/init.modem.rc \
@@ -79,10 +80,7 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/meta_init.modem.rc:root/meta_init.modem.rc \
     $(LOCAL_PATH)/rootdir/meta_init.project.rc:root/meta_init.project.rc \
     $(LOCAL_PATH)/rootdir/meta_init.rc:root/meta_init.rc \
-    $(LOCAL_PATH)/rootdir/init:root/init \
-    $(LOCAL_PATH)/rootdir/init.performance.rc:root/init.performance.rc \
-    $(LOCAL_PATH)/rootdir/init.storage.rc:root/init.storage.rc \
-    $(LOCAL_PATH)/rootdir/init.cm.rc:root/init.cm.rc \
+    $(LOCAL_PATH)/rootdir/init.performance.rc:root/init.performance.rc
 
 # Telecom
 PRODUCT_COPY_FILES += \
@@ -140,7 +138,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
 	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/media_codecs.xml \
-	$(LOCAL_PATH)/configs/media_codecs.xml:system/etc/permissions/media_codecs.xml \
 	$(LOCAL_PATH)/configs/media_profiles.xml:system/etc/media_profiles.xml
 
 PRODUCT_TAGS += dalvik.gc.type-precise
@@ -187,8 +184,7 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES := \
     camera.disable_zsl_mode=1 \
     ro.mount.fs=EXT4 \
     persist.service.acm.enable=0 \
-    persist.sys.usb.config=mtp \
-    persist.sys.timezone=Asia/Shanghai
+    persist.sys.usb.config=mtp
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.kernel.android.checkjni=0 \
@@ -205,6 +201,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libnl_2 \
     libtinyxml
+
+# BoringSSL Compat
+PRODUCT_PACKAGES += \
+    libboringssl-compat
 
 # FMRadio
 PRODUCT_PACKAGES += \

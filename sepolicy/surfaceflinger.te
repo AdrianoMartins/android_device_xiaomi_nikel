@@ -8,7 +8,7 @@ allow surfaceflinger self:netlink_socket { read bind create };
 allow surfaceflinger debug_prop:property_service set;
 allow surfaceflinger guiext-server:binder { transfer call };
 allow surfaceflinger system_data_file:dir { write add_name create};
-allow surfaceflinger system_data_file:file { write create open };
+allow surfaceflinger system_data_file:file { open };
 allow surfaceflinger proc:file write;
 allow surfaceflinger shell_exec:file { read execute open execute_no_trans };
 allow surfaceflinger anr_data_file:dir { write search create add_name };

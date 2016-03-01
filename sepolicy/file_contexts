@@ -305,7 +305,6 @@
 /system/bin/6620_launcher u:object_r:mtk_6620_launcher_exec:s0
 /system/bin/aal u:object_r:aal_exec:s0
 /system/bin/aee_core_forwarder u:object_r:aee_core_forwarder_exec:s0
-/system/bin/akmd09911 u:object_r:akmd09911_exec:s0
 /system/bin/akmd8963 u:object_r:akmd8963_exec:s0
 /system/bin/akmd8975 u:object_r:akmd8975_exec:s0
 /system/bin/ami304d u:object_r:ami304d_exec:s0
@@ -315,7 +314,6 @@
 /system/bin/autokd u:object_r:autokd_exec:s0
 /system/bin/batterywarning u:object_r:batterywarning_exec:s0
 /system/bin/bmm050d u:object_r:bmm050d_exec:s0
-/system/bin/bmm056d u:object_r:bmm056d_exec:s0
 /system/bin/boot_logo_updater u:object_r:boot_logo_updater_exec:s0
 /system/bin/br_app_data_service u:object_r:br_app_data_service_exec:s0
 /system/bin/ccci_fsd u:object_r:ccci_fsd_exec:s0
@@ -326,8 +324,6 @@
 /system/bin/dmlog u:object_r:dmlog_exec:s0
 /system/bin/dongled u:object_r:usbdongled_exec:s0
 /system/bin/dualmdlogger u:object_r:dualmdlogger_exec:s0
-/system/bin/eemcs_fsd u:object_r:eemcs_fsd_exec:s0
-/system/bin/eemcs_mdinit u:object_r:eemcs_mdinit_exec:s0
 /system/bin/emdlogger[0-9]+ u:object_r:emdlogger_exec:s0
 /system/bin/em_svr u:object_r:em_svr_exec:s0
 /system/bin/factory u:object_r:factory_exec:s0
@@ -370,7 +366,6 @@
 /system/bin/pppd_dt u:object_r:pppd_dt_exec:s0
 /system/bin/pppd_via u:object_r:pppd_via_exec:s0
 /system/bin/pq u:object_r:pq_exec:s0
-/system/bin/program_binary_service u:object_r:program_binary_exec:s0
 /system/bin/resmon u:object_r:resmon_exec:s0
 /system/bin/rild_dongle u:object_r:ril-3gddaemon_exec:s0
 /system/bin/s62xd u:object_r:s62xd_exec:s0
@@ -402,10 +397,7 @@
 /system/bin/charon u:object_r:charon_exec:s0
 /system/bin/starter u:object_r:starter_exec:s0
 /system/bin/stroke u:object_r:stroke_exec:s0
-/system/bin/istd8303 u:object_r:istd8303_exec:s0
 /system/bin/mmc3524xd u:object_r:mmc3524xd_exec:s0
-/system/bin/mc6470d u:object_r:mc6470d_exec:s0
-/system/bin/qmcX983d u:object_r:qmcX983d_exec:s0
 /system/bin/vtservice u:object_r:vtservice_exec:s0
 
 # Wallpaper file for smartbook

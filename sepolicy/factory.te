@@ -85,7 +85,6 @@ allow factory stpbt_device:chr_file { read write open };
 allow factory sysfs:file write;
 allow factory sysfs_wake_lock:file { read write open };
 allow factory system_data_file:dir { write remove_name add_name };
-allow factory system_data_file:file { write create unlink open };
 allow factory system_data_file:sock_file { write create setattr };
 allow factory system_file:file execute_no_trans;
 allow factory tmpfs:lnk_file read;
