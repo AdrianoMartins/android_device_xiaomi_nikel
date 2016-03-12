@@ -202,13 +202,9 @@ PRODUCT_PACKAGES += \
     libnl_2 \
     libtinyxml
 
-# BoringSSL Compat
-PRODUCT_PACKAGES += \
-    libboringssl-compat
-
 # FMRadio
 PRODUCT_PACKAGES += \
-    FmRadio
+    FMRadio
 
 # NFC
 PRODUCT_PACKAGES += \
