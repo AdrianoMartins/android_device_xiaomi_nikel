@@ -12,7 +12,7 @@ on post-fs-data
     mkdir /data/nvram/md  0770 root system
     chown radio radio /sys/kernel/ccci/boot
 
-#SeLinux
+    # Selinux
     mkdir /data/ccci_cfg 0770 system radio
     restorecon /data/ccci_cfg
     restorecon_recursive /protect_f
@@ -87,17 +87,17 @@ service permission_check /system/bin/permission_check
     group system radio
     oneshot
 
-#service ccci_fsd /system/bin/ccci_fsd 0
-#    user root
-#    group root
-#    class core
-#    oneshot
+service ccci_fsd /system/bin/ccci_fsd 0
+    user root
+    group root
+    class core
+    oneshot
 
-#service ccci_mdinit /system/bin/ccci_mdinit 0
-#    user root
-#    group root
-#    class core
-#    oneshot
+service ccci_mdinit /system/bin/ccci_mdinit 0
+    user root
+    group root
+    class core
+    oneshot
 
 service ccci_rpcd /system/bin/ccci_rpcd 0
     user root
