@@ -113,6 +113,8 @@ on post-fs
     # GPS
     chmod 0660 /dev/gps
     chown system gps /dev/gps
+    chmod 0660 /dev/stpgps
+    chown gps gps /dev/stpgps
 
     chmod 0660 /dev/ttyC2
     chown system gps /dev/ttyC2
@@ -147,6 +149,8 @@ on post-fs-data
 
     # GPS
     mkdir /data/gps_mnl 0771 gps system
+
+    mkdir /data/misc/gps 0770 gps gps
 
     # NFC
     mkdir /data/nfc_socket 0771 nfc radio
