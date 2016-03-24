@@ -11,9 +11,6 @@ PRODUCT_RELEASE_NAME := s3plus_n560a
 
 EXTENDED_FONT_FOOTPRINT := true
 
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    persist.sys.timezone=Asia/Shanghai
-
 PRODUCT_DEVICE := s3plus_n560a
 PRODUCT_NAME := full_s3plus_n560a
 PRODUCT_BRAND := Jiayu
