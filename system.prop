@@ -1,6 +1,6 @@
 #
 #
-# system.prop for Hermes
+# system.prop for Jiayu S3 Plus
 #
 
 rild.libpath=/system/lib64/mtk-ril.so
