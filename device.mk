@@ -27,7 +27,7 @@ PRODUCT_PACKAGES += \
    libstlport
 
 PRODUCT_COPY_FILES += \
-   $(LOCAL_KERNEL):prebuilt/kernel
+   $(LOCAL_KERNEL):kernel
 
 # Hack to fix asec on emulated sdcard
 PRODUCT_PACKAGES += \
