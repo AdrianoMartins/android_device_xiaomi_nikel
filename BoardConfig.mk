@@ -57,10 +57,6 @@ BOARD_MKBOOTIMG_ARGS := --base 0x40078000 --pagesize 2048 --kernel_offset 0x0000
 TARGET_PREBUILT_KERNEL := $(LOCAL_PATH)/prebuilt/kernel
 BOARD_CUSTOM_BOOTIMG := true
 
-# MKImage
-#TARGET_MKIMAGE := $(LOCAL_PATH)/mkimage
-#TARGET_USE_BUILT_BOOTIMAGE := true
-
 TARGET_KMODULES := true
 # Disable memcpy opt (for audio libraries)
 TARGET_CPU_MEMCPY_OPT_DISABLE := true
@@ -92,9 +88,6 @@ BOARD_CHARGER_SHOW_PERCENTAGE := true
 EXTENDED_FONT_FOOTPRINT := true
 
 TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
-
-# PREBUILT_Chromium
-#PRODUCT_PREBUILT_WEBVIEWCHROMIUM := yes
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
