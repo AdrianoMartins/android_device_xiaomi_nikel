@@ -211,6 +211,10 @@ PRODUCT_PACKAGES += \
     Nfc \
     Tag
 
+# Camera
+PRODUCT_PACKAGES += \
+    Snap
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     e2fsck \
