@@ -18,7 +18,6 @@ allow recovery misc_sd_device:chr_file *;
 # Date : WK14.39
 # Operation : Migration 
 # Purpose : for CIP project access /custom partition 
-allow recovery custom_file:dir *;
 allow recovery rootfs:dir *;
 
 # Date : WK14.41
@@ -47,12 +46,6 @@ dontaudit recovery self:capability sys_ptrace;
 allow recovery ueventd:dir *;
 allow recovery ueventd:file ~{ execute entrypoint };
 allow recovery ueventd:lnk_file *;
-
-# Date : WK14.42
-# Operation : Migration 
-# Purpose : for sepcial factory reset
-allow recovery system_data_file:dir *;
-allow recovery apk_data_file:dir *;
 
 userdebug_or_eng(`
   allow recovery su:dir *;
@@ -83,12 +76,8 @@ allow recovery self:capability sys_boot;
 # Date : WK14.46
 # Operation : Migration 
 # Purpose : FOTA upgrade
-allow recovery app_data_file:dir { write create add_name };
-allow recovery app_data_file:dir { read open };
-allow recovery app_data_file:file { read write create open };
-allow recovery mobicore_data_file:dir { write remove_name search add_name };
-allow recovery mobicore_data_file:file { rename setattr read create write getattr unlink open };
-allow recovery mobicore_data_file:file { relabelfrom relabelto };
+allow recovery app_data_file:file { read open };
+allow recovery mobicore_data_file:file { read getattr open relabelto };
 
 # Date : WK14.47
 # Operation : Migration 
