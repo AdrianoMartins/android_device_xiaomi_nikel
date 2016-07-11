@@ -1117,6 +1117,20 @@ service mc6420d /system/bin/mc6420d
     group system
     class main
 
+service qmc6983d /system/bin/qmc6983d
+    disabled
+    user system
+    group system
+    class main
+    oneshot
+    
+service st480d /system/bin/st480d
+    disabled
+    user system
+    group system
+    class main
+    oneshot
+
 service orientationd /system/bin/orientationd
     disabled
     user system
