@@ -619,7 +619,8 @@ on boot
     chmod 0660 /sys/power/autosleep
 
     chmod 0664 /sys/class/leds/lcd-backlight/brightness
-
+    
+    chown system system /sys/bus/platform/drivers/gyroscope/gyro_orientation
     chown system system /sys/devices/system/cpu/cpufreq/hotplug/cpu_num_base
     chmod 0660 /sys/devices/system/cpu/cpufreq/hotplug/cpu_num_base
     chown root   system /sys/kernel/debug/binder/transaction_log_enable
@@ -708,7 +709,7 @@ on boot
 on property:ro.board.platform=mt6753
     chown system system /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
     chmod 0660 /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq
-    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1300000 
+    write /sys/devices/system/cpu/cpufreq/interactive/hispeed_freq 1300000
 
 on property:vold.decrypt=trigger_reset_main
     start stop_modem
