@@ -223,7 +223,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    lights.mt6735
+    lights.mt6753
 
 # Sensor Calibration
 PRODUCT_PACKAGES += libem_sensor_jni
