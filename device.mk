@@ -217,6 +217,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Snap
 
+# Messaging
+PRODUCT_PACKAGES += \
+    messaging
+
 # Lights
 PRODUCT_PACKAGES += \
     lights.mt6735
