@@ -78,7 +78,8 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/rootdir/meta_init.modem.rc:root/meta_init.modem.rc \
     $(LOCAL_PATH)/rootdir/meta_init.project.rc:root/meta_init.project.rc \
     $(LOCAL_PATH)/rootdir/meta_init.rc:root/meta_init.rc \
-    $(LOCAL_PATH)/rootdir/init.performance.rc:root/init.performance.rc
+    $(LOCAL_PATH)/rootdir/init.performance.rc:root/init.performance.rc \
+    $(LOCAL_PATH)/rootdir/ueventd.mt6735.rc:root/ueventd.mt6735.rc
 
 # Telecom
 PRODUCT_COPY_FILES += \
