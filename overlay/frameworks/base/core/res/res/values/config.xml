@@ -97,6 +97,9 @@
     <!-- Disable IpReachability monitor -->
     <bool name="config_wifi_ipreachability_monitor">false</bool>
 
+    <!-- Wifi DualBand -->
+    <bool name="config_wifi_dual_band_support">true</bool>    
+
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveNotificationLed">true</bool>
 
