@@ -16,13 +16,6 @@ unix_socket_connect(platform_app, agpsd, mtk_agpsd);
 # Package: com.mediatek.fmradio
 allow platform_app fm_device:chr_file rw_file_perms;
 
-# Date: 2014/08/22
-# Operation: Migration
-# Purpose: enable drawing picture/texture in OpenGl environment for gallery3d
-# Package: com.android.gallery3d
-# add debugfs policy for MMProfile
-allow platform_app debugfs:file { read ioctl };
-
 # Date: 2014/09/05
 # Operation: FullUT
 # Purpose: [SystemUI] [Bind to guiext-server for updating view][path:hardware/gui_ext/]

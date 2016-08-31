@@ -10,12 +10,6 @@
 # Package Name: com.android.launcher2
 allow untrusted_app guiext-server:binder { transfer call };
 
-# Date : 2014/10/27
-# Operation : SQC 
-# Purpose : [ALPS01785313] Permission denied for dump hprof
-# Package: com.android.gallery3d
-allow untrusted_app anr_data_file:file rw_file_perms;
-
 # Date : 2014/09/09
 # Operation : Development LCA Feature "Move OAT to SD Card"
 # Purpose : for LCA ROM Size Slim

@@ -23,8 +23,6 @@ allow mediaserver self:capability sys_nice;
 # Date : WK14.32
 # Operation : Migration
 # Purpose : Set audio driver permission to access SD card for debug purpose and accss NVRam.
-allow mediaserver sdcard_internal:dir { write create add_name };
-allow mediaserver sdcard_internal:file create;
 allow mediaserver nvram_data_file:dir { add_name write search };
 allow mediaserver nvram_data_file:file { write getattr setattr read create open };
 allow mediaserver nvram_data_file:lnk_file read;
@@ -79,13 +77,6 @@ allow mediaserver camera_sysram_device:chr_file { read ioctl open };
 # Operation : Migration
 # Purpose : VDEC/VENC device node
 allow mediaserver Vcodec_device:chr_file { read write ioctl open };
-
-# Date : WK14.36
-# Operation : Migration
-# Purpose : MMProfile debug
-# userdebug_or_eng(`
-allow mediaserver debugfs:file {read ioctl};
-# ')
 
 # Date : WK14.36
 # Operation : Migration
@@ -223,9 +214,7 @@ allow mediaserver mtk_jpeg_device:chr_file { read ioctl open };
 # Date : WK14.41
 # Operation : Migration
 # Purpose : Lossless BT audio
-allow mediaserver shell_exec:file { read open execute execute_no_trans };
-allow mediaserver system_file:file execute_no_trans;
-allow mediaserver zygote_exec:file execute_no_trans;
+allow mediaserver shell_exec:file { read open execute };
 
 # Date : WK14.41
 # Operation : Migration
@@ -343,7 +332,7 @@ allow mediaserver untrusted_app_tmpfs:file write;
 # Operation : WFD
 # Purpose : WFD notifies its status to thermal module
 allow mediaserver proc_thermal:file { write getattr open };
-allow mediaserver thermal_manager_exec:file { getattr execute read open execute_no_trans };
+allow mediaserver thermal_manager_exec:file { getattr execute read open };
 allow mediaserver proc_mtkcooler:file { read write open };
 allow mediaserver proc_mtktz:file { read write open };
 allow mediaserver proc_thermal:file { read write open };

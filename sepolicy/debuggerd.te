@@ -33,10 +33,6 @@ allow debuggerd exm0_device:chr_file r_file_perms;
 allow debuggerd shell_exec:file { execute execute_no_trans };
 allow debuggerd dex2oat_exec:file { execute execute_no_trans };
 
-# aee db dir and db files
-allow debuggerd sdcard_internal:dir create_dir_perms;
-allow debuggerd sdcard_internal:file create_file_perms;
-
 #data/anr
 allow debuggerd anr_data_file:dir create_dir_perms;
 allow debuggerd anr_data_file:file create_file_perms;
@@ -57,9 +53,6 @@ allow debuggerd aee_core_data_file:file create_file_perms;
 allow debuggerd data_tmpfs_log_file:dir create_dir_perms;
 allow debuggerd data_tmpfs_log_file:file create_file_perms;
 
-allow debuggerd shell_data_file:dir search;
-allow debuggerd shell_data_file:file r_file_perms;
-
 #/data/anr/SF_RTT
 allow debuggerd sf_rtt_file:dir search;
 allow debuggerd sf_rtt_file:file r_file_perms;
@@ -67,7 +60,6 @@ allow debuggerd sf_rtt_file:file r_file_perms;
 allow debuggerd sysfs:file write;
 allow debuggerd proc:file write;
 allow debuggerd sysfs_lowmemorykiller:file { read open };
-allow debuggerd debugfs:file read;
 #allow debuggerd proc_security:file { write open };
 
 allow debuggerd self:capability { fsetid sys_nice sys_resource net_admin sys_module };

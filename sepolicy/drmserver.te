@@ -13,7 +13,6 @@ allow drmserver platform_app:dir search;
 allow drmserver platform_app:file { read getattr open };
 allow drmserver property_socket:sock_file write;
 allow drmserver radio_data_file:file { read getattr open };
-allow drmserver sdcard_internal:file open;
 allow drmserver tmpfs:lnk_file read;
 
 #Add by rui.hu

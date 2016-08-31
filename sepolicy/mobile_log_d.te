@@ -27,8 +27,6 @@ init_daemon_domain(mobile_log_d)
 # Operation : Migration 
 # Purpose : for L early bring-up
 allow mobile_log_d kernel:system syslog_mod;
-allow mobile_log_d sdcard_internal:dir create_dir_perms;
-allow mobile_log_d sdcard_internal:file create_file_perms;
 allow mobile_log_d platform_app:fd use;
 allow mobile_log_d platform_app_tmpfs:file write;
 #allow mobile_log_d unlabeled:lnk_file read;

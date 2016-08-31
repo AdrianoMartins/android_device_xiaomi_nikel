@@ -93,9 +93,6 @@
     </string-array>
 
     <bool name="config_wifi_background_scan_support">true</bool>
-    
-    <!-- Disable IpReachability monitor -->
-    <bool name="config_wifi_ipreachability_monitor">false</bool>
 
     <!-- Wifi DualBand -->
     <bool name="config_wifi_dual_band_support">true</bool>    
@@ -169,42 +166,42 @@
     </integer-array>
     <integer-array name="config_autoBrightnessButtonBacklightValues">
         <item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
     </integer-array>
     <integer-array name="config_autoBrightnessKeyboardBacklightValues">
         <item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
-	<item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
+        <item>255</item>
     </integer-array>
     
- <!-- Vibrator pattern for feedback about a long screen/key press -->
+    <!-- Vibrator pattern for feedback about a long screen/key press -->
     <integer-array name="config_longPressVibePattern">
         <item>0</item>
         <item>1</item>
@@ -263,7 +260,7 @@
         <item>10</item>
     </integer-array>
 
-<integer-array name="config_defaultNotificationVibePattern">
+    <integer-array name="config_defaultNotificationVibePattern">
         <item>0</item>
         <item>350</item>
         <item>250</item>
@@ -320,4 +317,18 @@
     <integer name="config_lowMemoryKillerMinFreeKbytesAbsolute">-1</integer>
 
     <bool name="config_user_notification_of_restrictied_mobile_access">false</bool>
+
+    <!-- Hardware keys present on the device, stored as a bit field.
+         This integer should equal the sum of the corresponding value for each
+         of the following keys present:
+            1 - Home
+            2 - Back
+            4 - Menu
+            8 - Assistant (search)
+            16 - App switch
+            32 - Camera
+            64 - Volume rocker
+         For example, a device with Home, Back and Menu keys would set this
+         config to 7. -->
+    <integer name="config_deviceHardwareKeys">71</integer>
 </resources>

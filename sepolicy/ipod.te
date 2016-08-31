@@ -77,8 +77,6 @@ allow ipod logo_device:chr_file { open read };
 allow ipod self:capability sys_boot;
 allow ipod proc_sysrq:file { open write };
 
-allow ipod debugfs:file { open read getattr };
-
 # IPOH
 allow ipod system_data_file:dir { open read write add_name create remove_name };
 allow ipod cache_file:dir { open read write add_name create remove_name };

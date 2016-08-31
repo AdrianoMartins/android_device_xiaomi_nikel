@@ -1,37 +1,66 @@
 import init.project.rc
-import init.xlog.rc
 import init.aee.rc
 import init.ssd.rc
 
 on init
-    export LD_PRELOAD "libxlog.so"
+    export LD_PRELOAD "libmtk_symbols.so"
 
-# Temp Backward compatibility
+    # Temp Backward compatibility
     mkdir /protect_f 0771 system system
     mkdir /protect_s 0771 system system
-    #create mountpoint for persist partition
+    # create mountpoint for persist partition
     mkdir /persist 0771 system system
-#Create nvdata mount point
+    # create nvdata mount point
     mkdir /nvdata 0771 system system
-# Create CIP mount point
+    # create CIP mount point
     mkdir /custom
-
-	#mkdir /nvram 0771 system system
-	#mkdir /proinfo 0771 system system
-	#mkdir /misc 0771 system system
 
     mkdir /mnt/cd-rom 0000 system system
 
-# Change ION driver permission
-    chmod 0644 /dev/ion
+    # ion device
+    chmod 0666 /dev/ion
+    chmod 0660 /sys/bus/platform/drivers/gsensor/cpsdata
+    chmod 0660 /sys/bus/platform/drivers/gsensor/cpsrange
+    chmod 0660 /sys/bus/platform/drivers/gsensor/cpsbandwidth
+    chmod 0660 /sys/bus/platform/drivers/gsensor/cpsopmode
+    chmod 0660 /sys/bus/platform/drivers/gsensor/fifo_mode
+    chmod 0660 /sys/bus/platform/drivers/gsensor/fifo_data_frame
+    chmod 0660 /sys/bus/platform/drivers/gsensor/fifo_framecount
+    chown system system /sys/bus/platform/drivers/gsensor/cpsdata
+    chown system system /sys/bus/platform/drivers/gsensor/cpsrange
+    chown system system /sys/bus/platform/drivers/gsensor/cpsbandwidth
+    chown system system /sys/bus/platform/drivers/gsensor/cpsopmode
+    chown system system /sys/bus/platform/drivers/gsensor/fifo_mode
+    chown system system /sys/bus/platform/drivers/gsensor/fifo_data_frame
+    chown system system /sys/bus/platform/drivers/gsensor/fifo_framecount
+    # add for mag 
+    chmod 0660 /sys/bus/platform/drivers/msensor/rawdata 
+    chown system system /sys/bus/platform/drivers/msensor/rawdata 
+    chmod 0660 /sys/bus/platform/drivers/msensor/daemon
+    chown system system /sys/bus/platform/drivers/msensor/daemon
+    # add for gyro 
+    chmod 0660 /sys/bus/platform/drivers/gyroscope/rawdata 
+    chmod 0660 /sys/bus/platform/drivers/gyroscope/datarate 
+    chmod 0660 /sys/bus/platform/drivers/gyroscope/range 
+    chmod 0660 /sys/bus/platform/drivers/gyroscope/powermode 
+    chmod 0660 /sys/bus/platform/drivers/gyroscope/fifo_mode 
+    chmod 0660 /sys/bus/platform/drivers/gyroscope/fifo_data_frame 
+    chmod 0660 /sys/bus/platform/drivers/gyroscope/fifo_framecount 
+    chown system system /sys/bus/platform/drivers/gyroscope/rawdata 
+    chown system system /sys/bus/platform/drivers/gyroscope/datarate 
+    chown system system /sys/bus/platform/drivers/gyroscope/range 
+    chown system system /sys/bus/platform/drivers/gyroscope/powermode 
+    chown system system /sys/bus/platform/drivers/gyroscope/fifo_mode 
+    chown system system /sys/bus/platform/drivers/gyroscope/fifo_data_frame
+    chown system system /sys/bus/platform/drivers/gyroscope/fifo_framecount
 
-# Vanzo:yinjun on: Tue, 31 Mar 2015 19:43:54 +0800
-# add remoteir
-chmod 0664 /dev/remote_ctrl_dev
-chown system system /dev/remote_ctrl_dev
-# End of Vanzo: yinjun
+    # Vanzo:yinjun on: Tue, 31 Mar 2015 19:43:54 +0800
+    # add remoteir
+    chmod 0664 /dev/remote_ctrl_dev
+    chown system system /dev/remote_ctrl_dev
+    # End of Vanzo: yinjun
 
-# change lk_env permission
+    # change lk_env permission
     chown root system /proc/lk_env
     chmod 0660 /proc/lk_env
 
@@ -130,7 +159,7 @@ on post-fs-data
     # create basic filesystem structure
     # mkdir /data/nvram 2770 root system
     # We chown/chmod /nvdata again so because mount is run as root + defaults
-    chown root system /nvdata
+    chown media system /nvdata
     chmod 2770 /nvdata
     symlink /nvdata /data/nvram
 
@@ -322,7 +351,7 @@ on post-fs-data
 
     #VideoCodec
     mknod /dev/Vcodec c 160 0
-    chmod 0660 /dev/Vcodec
+    chmod 0666 /dev/Vcodec
     chown system media /dev/Vcodec
 
     #MJC
@@ -455,7 +484,7 @@ on post-fs-data
     # device info /proc interface
     mknod /dev/devmap c 196 0;
     chmod 0440 /dev/devmap
-    chown root system /dev/devmap
+    chown system camera /dev/devmap
 
     # BT relayer mode used VCOM
     chown bluetooth radio /dev/ttyGS2
@@ -527,7 +556,7 @@ on post-fs-data
     chown system media /dev/mt-mdp
 
     # SMI
-    chmod 0660 /dev/MTK_SMI
+    chmod 0666 /dev/MTK_SMI
     chown system media /dev/MTK_SMI
 
 
@@ -611,10 +640,6 @@ on post-fs-data
 # -----------------------
 
 on boot
-
-    # xlog
-    start xlogboot
-
     write /proc/sys/vm/dirty_writeback_centisecs 300
     chmod 0660 /sys/power/autosleep
 
@@ -814,9 +839,9 @@ service atcid-daemon-e /system/bin/atcid
 on property:persist.service.atci.usermode=1
     setprop persist.sys.usb.config mass_storage,adb,acm
 
-on property:ro.build.type=eng
-start atci_service
-start atcid-daemon-e
+#on property:ro.build.type=eng
+#start atci_service
+#start atcid-daemon-e
 
 service audio-daemon /system/bin/audiocmdservice_atci
     class main
@@ -878,51 +903,6 @@ service autokd /system/bin/autokd
 #
 # MTK Wi-Fi related services (End)
 #
-
-
-service dhcpcd_bt-pan /system/bin/dhcpcd -BK -dd
-    class main
-    user root
-    group net_admin net_raw
-    disabled
-    oneshot
-
-
-
-service dhcpcd_wlan0 /system/bin/dhcpcd -BK -dd
-    class main
-	user root
-	group net_admin net_raw
-    disabled
-    oneshot
-
-service dhcpcd_p2p /system/bin/dhcpcd -BK -dd
-    class main
-	user root
-	group net_admin net_raw
-    disabled
-    oneshot
-
-service iprenew_wlan0 /system/bin/dhcpcd -n
-    class main
-	user dhcp
-	group net_admin net_raw
-    disabled
-    oneshot
-
-service iprenew_p2p /system/bin/dhcpcd -n
-    class main
-	user dhcp
-	group net_admin net_raw
-    disabled
-    oneshot
-
-service dhcp_inform /system/bin/dhcpcd -s -BK -A
-    class main
-    user root
-    group system radio dhcp net_admin net_raw
-    disabled
-    oneshot
 
 service dhcpv6_inform /system/bin/dhcp6c -c "/etc/wide-dhcpv6/dhcp6cSIP.conf" -Dfi
     class main
