@@ -351,8 +351,8 @@ on post-fs-data
 
     #VideoCodec
     mknod /dev/Vcodec c 160 0
-    chmod 0666 /dev/Vcodec
-    chown system media /dev/Vcodec
+    chmod 0660 /dev/Vcodec
+    chown media camera /dev/Vcodec
 
     #MJC
     chmod 0660 /dev/MJC
@@ -556,9 +556,11 @@ on post-fs-data
     chown system media /dev/mt-mdp
 
     # SMI
-    chmod 0666 /dev/MTK_SMI
-    chown system media /dev/MTK_SMI
-
+    chmod 0660 /dev/MTK_SMI
+    chown system camera /dev/MTK_SMI
+    
+    chown system camera /sys/bus/platform/drivers/mem_bw_ctrl/concurrency_scenario
+    chmod 0660 /sys/bus/platform/drivers/mem_bw_ctrl/concurrency_scenario
 
    #change partition permission
 
