@@ -1,6 +1,7 @@
-import init.project.rc
-import init.aee.rc
-import init.ssd.rc
+import /init.project.rc
+import /init.ssd.rc
+import /init.modem.rc
+import /init.performance.rc
 
 on init
     export LD_PRELOAD "libmtk_symbols.so"
@@ -64,6 +65,8 @@ on init
     chown root system /proc/lk_env
     chmod 0660 /proc/lk_env
 
+    chmod 0666 /dev/kmsg
+
 on charger
     mkdir /dev/block/platform/mtk-msdc.0/by-name 0777 system system
     symlink /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/logo /dev/block/platform/mtk-msdc.0/by-name/logo
@@ -71,6 +74,7 @@ on charger
     exec /system/bin/chmod 0777 /dev/block/platform/mtk-msdc.0/by-name/logo
 
     mount ext4 /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/system /system ro wait
+    chmod 0666 /dev/kmsg
     start fuelgauged
     start kpoc_charger
     start servicemanager
@@ -80,13 +84,18 @@ on fs
     mount_all /fstab.mt6735
 
     # Workaround for old nvram blobs
-    mkdir /dev/block/platform/mtk-msdc.0/by-name 0777 system system
+    mkdir /dev/block/platform/mtk-msdc.0/by-name 0770 root system
     symlink /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/nvram /dev/block/platform/mtk-msdc.0/by-name/nvram
     symlink /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/proinfo /dev/block/platform/mtk-msdc.0/by-name/proinfo
-    exec /system/bin/chown -R system:system /dev/block/platform/mtk-msdc.0/by-name/nvram
-    exec /system/bin/chmod 0777 /dev/block/platform/mtk-msdc.0/by-name/nvram
-    exec /system/bin/chown -R system:system /dev/block/platform/mtk-msdc.0/by-name/proinfo
-    exec /system/bin/chmod 0777 /dev/block/platform/mtk-msdc.0/by-name/proinfo
+    exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/by-name/nvram
+    exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/by-name/nvram
+    exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/by-name/proinfo
+    exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/by-name/proinfo
+
+    exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/secro
+    exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/secro
+    exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/seccfg
+    exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/seccfg
 
     write /proc/bootprof "INIT:Mount_END"
 
@@ -157,7 +166,11 @@ on post-fs-data
     chmod 0771 /persist
 
     # create basic filesystem structure
-    # mkdir /data/nvram 2770 root system
+    mkdir /data/nvram 0770 media system
+    mkdir /data/nvram/APCFG 0770 media system
+    mkdir /data/nvram/APCFG/APRDCL 0770 media system
+    mkdir /data/nvram/APCFG/APRDEB 0770 media system
+
     # We chown/chmod /nvdata again so because mount is run as root + defaults
     chown media system /nvdata
     chmod 2770 /nvdata
@@ -792,9 +805,6 @@ service bootlogoupdater /system/bin/boot_logo_updater
     class core
     oneshot
 
-service mobile_log_d /system/bin/mobile_log_d
-    class main
-
 # bugreport is triggered by holding down volume down, volume up and power
 service bugreport /system/bin/dumpstate -d -p -B \
         -o /data/data/com.android.shell/files/bugreports/bugreport
@@ -807,11 +817,10 @@ service netdiag /system/bin/netdiag
     class main
     socket netdiag stream 0664 root inet
 
-
 service nvram_daemon /system/bin/nvram_daemon
     class main
     user root
-    group root
+    group system
     oneshot
 
 service atci_service /system/bin/atci_service
@@ -989,12 +998,6 @@ service pppd_gprs /system/bin/pppd_dt /dev/ttyACM0 debug noauth refuse-eap usepe
     disabled
     oneshot
 
-##Add by T.Zh for ppp daemon
-#service pppd /system/bin/pppd file /data/misc/ppp/ppp_options
-#    user root
-#    disabled
-#    oneshot
-#
 ##
 #
 #  Modem related services (End)
@@ -1018,27 +1021,6 @@ service mnld /system/xbin/mnld
     user gps
     group gps inet misc sdcard_rw sdcard_r media_rw system
     socket mnld stream 660 gps system
-
-service mdlogger /system/bin/mdlogger
-    class main
-    user shell
-    group shell system radio sdcard_rw inet sdcard_r media_rw
-    disabled
-    oneshot
-
-service dualmdlogger /system/bin/dualmdlogger
-    class main
-    user shell
-    group shell system radio sdcard_rw inet sdcard_r media_rw
-    disabled
-    oneshot
-
-service emdlogger1 /system/bin/emdlogger1
-    class main
-    user shell
-    group system shell radio sdcard_rw inet sdcard_r media_rw
-    disabled
-    oneshot
 
 #
 #sensor service (begin)
@@ -1134,39 +1116,15 @@ service geomagneticd /system/bin/geomagneticd
 #sensor service (end)
 #
 
-#
-#emsvr service (start)
-#
-on property:ro.build.type=eng
-    start emsvr
-
-on property:ro.build.type=user
-    start emsvr_user
-
-on property:ro.build.type=userdebug
-    start emsvr_user
-
-service emsvr_user /system/bin/em_svr
-    disabled
-    user system
-    group system radio diag
-
-service emsvr /system/bin/em_svr
-    disabled
-    user root
-
-#
-#emsvr service (end)
-#
-
 service NvRAMAgent /system/bin/nvram_agent_binder
     class main
-    user root
-    group root
+    user system
+    group system
 
 service thermal_manager /system/bin/thermal_manager
     class main
     user root
+    group system
     oneshot
 
 service thermal /system/bin/thermal
@@ -1181,8 +1139,8 @@ service thermald /system/bin/thermald
 
 service fuelgauged /system/bin/fuelgauged
     class main
-    user root
-    group root
+    user system
+    group system
 
 #service sn /system/bin/sn
 #    class late_start
@@ -1196,10 +1154,6 @@ service batterywarning /system/bin/batterywarning
     user shell
     group shell
 
-#service BGW /system/xbin/BGW
-#	user system
-#	group gps system radio
-#	class main
 service MtkCodecService /system/bin/MtkCodecService
     class main
     user system

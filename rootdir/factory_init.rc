@@ -1,9 +1,5 @@
 import /init.environ.rc
 import init.ssd.rc
-import init.no_ssd.rc
-import init.ssd_nomuser.rc
-import init.fon.rc
-import init.trustonic.rc
 
 on early-init
     # Set init and its forked children's oom_adj.
