@@ -207,10 +207,6 @@ PRODUCT_PACKAGES += \
     Nfc \
     Tag
 
-# Camera
-PRODUCT_PACKAGES += \
-    Snap
-
 # Gello
 PRODUCT_PACKAGES += \
     Gello
