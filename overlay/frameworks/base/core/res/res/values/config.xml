@@ -340,4 +340,6 @@
     <bool name="config_dozeAfterScreenOff">true</bool>
     <!-- Specifies whether to decouple the interactive state of the device from the display on/off state. -->
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
+    <!-- Auto Power Modes is required for Doze and App Standby -->
+    <bool name="config_enableAutoPowerModes">true</bool>
 </resources>
