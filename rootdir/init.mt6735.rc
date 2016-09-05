@@ -68,10 +68,10 @@ on init
     chmod 0666 /dev/kmsg
 
 on charger
-    mkdir /dev/block/platform/mtk-msdc.0/by-name 0777 system system
+    mkdir /dev/block/platform/mtk-msdc.0/by-name 0770 root system
     symlink /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/logo /dev/block/platform/mtk-msdc.0/by-name/logo
-    exec /system/bin/chown -R system:system /dev/block/platform/mtk-msdc.0/by-name/logo
-    exec /system/bin/chmod 0777 /dev/block/platform/mtk-msdc.0/by-name/logo
+    exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/by-name/logo
+    exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/by-name/logo
 
     mount ext4 /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/system /system ro wait
     chmod 0666 /dev/kmsg
