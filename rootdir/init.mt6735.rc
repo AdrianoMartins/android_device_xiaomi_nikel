@@ -1023,7 +1023,7 @@ service mnld /system/xbin/mnld
     socket mnld stream 660 gps system
 
 #
-#sensor service (begin)
+# sensor service (begin)
 #
 
 service msensord /system/bin/msensord
@@ -1113,7 +1113,19 @@ service geomagneticd /system/bin/geomagneticd
     group system input
     class main
 #
-#sensor service (end)
+# sensor service (end)
+#
+
+#
+# emsvr service (start)
+#
+service emsvr /system/bin/em_svr
+    class main
+    user system
+    group system radio diag
+
+#
+# emsvr service (end)
 #
 
 service NvRAMAgent /system/bin/nvram_agent_binder
