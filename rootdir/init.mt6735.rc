@@ -55,11 +55,9 @@ on init
     chown system system /sys/bus/platform/drivers/gyroscope/fifo_data_frame
     chown system system /sys/bus/platform/drivers/gyroscope/fifo_framecount
 
-    # Vanzo:yinjun on: Tue, 31 Mar 2015 19:43:54 +0800
     # add remoteir
     chmod 0664 /dev/remote_ctrl_dev
     chown system system /dev/remote_ctrl_dev
-    # End of Vanzo: yinjun
 
     # change lk_env permission
     chown root system /proc/lk_env
