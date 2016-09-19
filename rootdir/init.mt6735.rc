@@ -158,6 +158,8 @@ on post-fs
     chmod 0660 /dev/mt6605
     chown radio nfc /dev/mt6605
 
+    chown system system /sys/block/mmcblk0/queue/scheduler
+
 on post-fs-data
     chown system system /persist
     chmod 0771 /persist
