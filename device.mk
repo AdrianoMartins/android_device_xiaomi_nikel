@@ -214,6 +214,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Gello
 
+# Snap
+PRODUCT_PACKAGES += \
+    Snap
+
 # Messaging
 PRODUCT_PACKAGES += \
     messaging
