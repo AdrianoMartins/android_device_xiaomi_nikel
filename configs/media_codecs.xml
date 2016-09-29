@@ -72,8 +72,6 @@ Only the three quirks included above are recognized at this point:
     corresponding color space converter for thumbnail extraction,
     matching surfaceflinger support that can render the custom format to
     a texture and possibly other code, so just DON'T USE THIS QUIRK.
-   
-    2012/07/13 config for MTK OMX Media Codecs, created by Morris Yang (mtk03147)
 -->
 
 <MediaCodecs>
