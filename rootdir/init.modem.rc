@@ -38,6 +38,13 @@ service gsm0710muxdmd2 /system/bin/gsm0710muxdmd2 -s /dev/ccci2_tty0 -f 512 -n 8
     disabled
     oneshot
 
+service muxreport-daemon /system/bin/muxreport
+    class core
+    user radio
+    group radio cache inet misc
+    disabled
+    oneshot
+
 service ril-daemon-mtk /system/bin/mtkrild
     class core
     socket rild stream 660 root radio
@@ -135,3 +142,5 @@ service terservice /system/bin/terservice
     group radio cache inet misc
     oneshot
 
+on property:ril.muxreport=1
+    start muxreport-daemon
