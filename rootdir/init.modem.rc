@@ -58,6 +58,9 @@ service ril-daemon-mtk /system/bin/mtkrild
     socket rild-mtk-ut-2 stream 660 radio net_bt
     socket rild-mtk-modem stream 660 radio system
     socket rild-atci stream 660 root radio
+    socket rild-mal stream 660 radio system
+    socket rild-mal-at stream 660 radio system
+    socket rild-vsim stream 660 root radio
     socket sap_uim_socket1 stream 660 bluetooth bluetooth
     socket sap_uim_socket2 stream 660 bluetooth bluetooth
     socket sap_uim_socket3 stream 660 bluetooth bluetooth
@@ -77,6 +80,9 @@ service ril-daemon-mtkmd2 /system/bin/mtkrildmd2
     socket rild-mtk-ut-2-md2 stream 660 radio net_bt
     socket rild-mtk-modem-md2 stream 660 radio system
     socket rild-atci-md2 stream 660 root radio
+    socket rild-vsim-md2 stream 660 root radio
+    socket rild-mal-md2 stream 660 radio system
+    socket rild-mal-at-md2 stream 660 radio system
     user root
     group radio cache inet misc audio sdcard_r sdcard_rw log system
     disabled
