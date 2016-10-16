@@ -5,7 +5,8 @@ LOCAL_SRC_FILES := \
     mtk_xlog.cpp \
     mtk_gui.cpp \
     mtk_ui.cpp \
-    mtk_omx.cpp
+    mtk_omx.cpp \
+    mtk_audio.cpp
 
 # only for 32bit libraries
 LOCAL_SRC_FILES_32 := mtk_string.cpp
