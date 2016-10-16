@@ -96,7 +96,9 @@ allow shell block_device:dir search;
 # Operation : Migration
 # Purpose : for debugging in user debug load.
 #           su does't exist on user load.
+userdebug_or_eng(`
 allow shell su_exec:file rx_file_perms;
+')
 
 # Date : WK14.46
 # Operation : Migration
