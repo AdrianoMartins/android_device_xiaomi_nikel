@@ -158,5 +158,7 @@ TARGET_USERIMAGES_USE_EXT4 := true
 endif
 
 # SELinux
-BOARD_SEPOLICY_DIRS := \
-       device/jiayu/s3plus_n560a/sepolicy
+BOARD_SEPOLICY_DIRS := $(LOCAL_PATH)/sepolicy
+
+# Seccomp filter
+BOARD_SECCOMP_POLICY := $(LOCAL_PATH)/seccomp
