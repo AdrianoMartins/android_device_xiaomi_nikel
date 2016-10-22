@@ -342,4 +342,7 @@
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
     <!-- Auto Power Modes is required for Doze and App Standby -->
     <bool name="config_enableAutoPowerModes">true</bool>
+
+    <!-- Control whether Night display is available. -->
+    <bool name="config_nightDisplayAvailable">true</bool>
 </resources>
