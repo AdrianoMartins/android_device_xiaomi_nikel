@@ -11,13 +11,8 @@ on post-fs
     # Modem related device nodes
     mkdir /data/nvram/md  0770 root system
 
-#  Build-in Modified - S
-#    insmod /system/lib/modules/ccci_plat.ko
-#    insmod /system/lib/modules/ccci.ko
-#  Build-in Modified - E
     chown radio radio /sys/kernel/ccci/boot
 
-    
 service permission_check /system/bin/permission_check
     user root
     group system radio
@@ -39,8 +34,7 @@ service ccci_rpcd /system/bin/ccci_rpcd 0
     oneshot
 
 on post-fs-data
-
-#SeLinux
+    # Selinux
     mkdir /data/ccci_cfg 0770 system radio
     restorecon /data/ccci_cfg
     restorecon_recursive /protect_f

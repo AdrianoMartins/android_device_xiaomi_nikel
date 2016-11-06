@@ -51,7 +51,7 @@ ro.mtk_world_phone=1
 ro.mtk_cta_set=1
 ro.mtk_lte_support=1
 ro.mtk_rild_read_imsi=1
-persist.md.perm.checked=to_upgrade
+persist.md.perm.checked=1
 
 # other things
 ro.mediatek.chip_ver=S01
