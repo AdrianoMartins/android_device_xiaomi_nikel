@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
-** Copyright 2013, The Android Open Source Project
+** Copyright 2016, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
 ** you may not use this file except in compliance with the License.
@@ -21,9 +21,6 @@
     <!-- Enable the electron beam -->
     <bool name="config_animateScreenLights">true</bool>
 
-    <!-- Remote server that can provide NTP responses. -->
-    <string translatable="false" name="config_ntpServer">asia.pool.ntp.org</string>
-
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->
     <integer name="config_screenBrightnessSettingMinimum">3</integer>
@@ -32,7 +29,6 @@
         timeout expires.  May be less than the minimum allowed brightness setting
         that can be set by the user. -->
     <integer name="config_screenBrightnessDim">20</integer>
-
 
     <!-- If this is true, the screen will come on when you plug/unplug usb/power/whatever. -->
     <bool name="config_unplugTurnsOnScreen">true</bool>
@@ -200,90 +196,9 @@
         <item>255</item>
         <item>255</item>
     </integer-array>
-    
-    <!-- Vibrator pattern for feedback about a long screen/key press -->
-    <integer-array name="config_longPressVibePattern">
-        <item>0</item>
-        <item>1</item>
-        <item>20</item>
-        <item>21</item>
-    </integer-array>
-
-    <!-- Vibrator pattern for feedback about touching a virtual key -->
-    <integer-array name="config_virtualKeyVibePattern">
-        <item>0</item>
-        <item>10</item>
-        <item>20</item>
-        <item>30</item>
-    </integer-array>
-
-    <!-- Vibrator pattern for a very short but reliable vibration for soft keyboard tap -->
-    <integer-array name="config_keyboardTapVibePattern">
-        <item>40</item>
-    </integer-array>
-
-    <!-- Vibrator pattern for feedback when selecting an hour/minute tick of a Clock -->
-    <integer-array name="config_clockTickVibePattern">
-        <item>125</item>
-        <item>30</item>
-    </integer-array>
-
-    <!-- Vibrator pattern for feedback when selecting a day/month/year date of a Calendar -->
-    <integer-array name="config_calendarDateVibePattern">
-        <item>125</item>
-        <item>30</item>
-    </integer-array>
-
-    <!-- Vibrator pattern for feedback about booting with safe mode disabled -->
-    <integer-array name="config_safeModeDisabledVibePattern">
-        <item>0</item>
-        <item>1</item>
-        <item>20</item>
-        <item>21</item>
-    </integer-array>
-
-    <!-- Vibrator pattern for feedback about booting with safe mode disabled -->
-    <integer-array name="config_safeModeEnabledVibePattern">
-        <item>0</item>
-        <item>1</item>
-        <item>20</item>
-        <item>21</item>
-        <item>500</item>
-        <item>600</item>
-    </integer-array>
-
-    <!-- Vibrator pattern for feedback about hitting a scroll barrier -->
-    <integer-array name="config_scrollBarrierVibePattern">
-        <item>0</item>
-        <item>15</item>
-        <item>10</item>
-        <item>10</item>
-    </integer-array>
-
-    <integer-array name="config_defaultNotificationVibePattern">
-        <item>0</item>
-        <item>350</item>
-        <item>250</item>
-        <item>350</item>
-    </integer-array>
-    <integer-array name="config_notificationFallbackVibePattern">
-        <item>0</item>
-        <item>100</item>
-        <item>150</item>
-        <item>100</item>
-    </integer-array>
-
-    <!-- Boolean indicating if restoring network selection should be skipped -->
-    <!-- The restoring is handled by modem if it is true -->
-    <bool translatable="false" name="skip_restoring_network_selection">true</bool>
 
     <!-- Set to true to add links to Cell Broadcast app from Settings and MMS app. -->
     <bool name="config_cellBroadcastAppLinks">true</bool>
-
-    <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
-    <integer name="config_shutdownBatteryTemperature">680</integer>
-
-    <bool name="config_ui_enableFadingMarquee">false</bool>
 
     <!-- Whether safe headphone volume is enabled or not (country specific). -->
     <bool name="config_safe_media_volume_enabled">true</bool>
@@ -306,15 +221,6 @@
     <integer name="config_multiuserMaximumUsers">4</integer>
     <!--  Whether Multiuser UI should be shown -->
     <bool name="config_enableMultiUserUI">true</bool>
-
-    <!-- Device configuration setting the minfree tunable in the lowmemorykiller in the
-         kernel. A high value will cause the lowmemorykiller to fire earlier, keeping more
-         memory in the file cache and preventing I/O thrashing, but allowing fewer processes
-         to stay in memory. A low value will keep more processes in memory but may cause
-         thrashing if set too low. Overrides the default value chosen by ActivityManager based
-         on screen size and total memory for the largest lowmemorykiller bucket, and scaled
-         proportionally to the smaller buckets. -1 keeps the default. -->
-    <integer name="config_lowMemoryKillerMinFreeKbytesAbsolute">-1</integer>
 
     <bool name="config_user_notification_of_restrictied_mobile_access">false</bool>
 
