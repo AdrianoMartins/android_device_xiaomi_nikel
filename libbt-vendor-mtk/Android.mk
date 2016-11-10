@@ -1,5 +1,3 @@
-ifneq ($(BOARD_HAVE_BLUETOOTH_MTK),)
-
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
@@ -27,5 +25,3 @@ LOCAL_MODULE_PATH_32 := $(2ND_TARGET_OUT_VENDOR_SHARED_LIBRARIES)
 LOCAL_MULTILIB := both
 
 include $(BUILD_SHARED_LIBRARY)
-
-endif

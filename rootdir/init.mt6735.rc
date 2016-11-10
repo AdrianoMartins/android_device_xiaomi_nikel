@@ -114,10 +114,6 @@ on post-fs-data
     chmod 0660 /sys/class/misc/md32/md32_mobile_log
     write /sys/class/misc/md32/md32_boot 1
 
-    # radvd
-    mkdir /data/misc/radvd 0770 system system
-    chmod 444 /etc/radvd/radvd.conf
-
     # Mali 3D GPU driver
     chmod 666 /dev/mali0
 
