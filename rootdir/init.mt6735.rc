@@ -551,15 +551,6 @@ service wpa_supplicant /system/bin/wpa_supplicant \
 # MTK Wi-Fi related services (End)
 #
 
-# Bluetooth
-service mtkbt /system/bin/mtkbt
-    class late_start
-	socket bt.int.adp dgram 660 bluetooth net_bt
-	socket bt.a2dp.stream dgram 660 bluetooth net_bt
-	user bluetooth
-	group system vpn net_admin inet net_raw net_bt bluetooth net_bt_admin net_bt_stack sdcard_r
-	oneshot
-
 # GPS
 service agpsd /system/bin/mtk_agpsd
     class main
