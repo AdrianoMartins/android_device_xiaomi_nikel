@@ -4,18 +4,18 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 
 # Inherit from hardware-specific part of the product configuration
-$(call inherit-product, device/jiayu/s3plus_n560a/device.mk)
+$(call inherit-product, device/xiaomi/nikel/device.mk)
 
 # Release name
-PRODUCT_RELEASE_NAME := s3plus_n560a
+PRODUCT_RELEASE_NAME := nikel
 
 EXTENDED_FONT_FOOTPRINT := true
 
-PRODUCT_DEVICE := s3plus_n560a
-PRODUCT_NAME := full_s3plus_n560a
-PRODUCT_BRAND := Jiayu
-PRODUCT_MODEL := S3+
-PRODUCT_MANUFACTURER := Jiayu
+PRODUCT_DEVICE := nikel
+PRODUCT_NAME := full_nikel
+PRODUCT_BRAND := Xiaomi
+PRODUCT_MODEL := Redmi Note 4
+PRODUCT_MANUFACTURER := Xiaomi
 PRODUCT_RESTRICT_VENDOR_FILES := false
 
 # Boot animation

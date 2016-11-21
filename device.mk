@@ -1,6 +1,6 @@
-$(call inherit-product, vendor/jiayu/s3plus_n560a/s3plus_n560a-vendor-blobs.mk)
+$(call inherit-product, vendor/xiaomi/nikel/nikel-vendor-blobs.mk)
 
-LOCAL_PATH := device/jiayu/s3plus_n560a
+LOCAL_PATH := device/xiaomi/nikel
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
@@ -9,7 +9,7 @@ PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Recovery allowed devices
-TARGET_OTA_ASSERT_DEVICE := s3plus_n560a,S3H
+TARGET_OTA_ASSERT_DEVICE := nikel
 
 PRODUCT_PACKAGES += \
    libmtk_symbols \
