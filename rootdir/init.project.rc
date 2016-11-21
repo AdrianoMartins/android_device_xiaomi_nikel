@@ -1,6 +1,6 @@
 # MTK project .rc configure
 
-import init.mt6735.usb.rc
+import init.mt6797.usb.rc
 
 on init
     mkdir /mnt/media_rw/usbotg 0700 media_rw media_rw

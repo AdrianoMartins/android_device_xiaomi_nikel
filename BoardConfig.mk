@@ -1,4 +1,4 @@
-# mt6753 platform boardconfig
+# mt6797 platform boardconfig
 LOCAL_PATH := device/xiaomi/nikel
 -include vendor/xiaomi/nikel/BoardConfigVendor.mk
 
@@ -9,7 +9,7 @@ TARGET_PROVIDES_INIT_RC := true
 
 # Platform
 ARCH_ARM_HAVE_TLS_REGISTER := true
-TARGET_BOARD_PLATFORM := mt6753
+TARGET_BOARD_PLATFORM := mt6797
 TARGET_NO_BOOTLOADER := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_NO_FACTORYIMAGE := true
@@ -34,7 +34,7 @@ TARGET_USES_64_BIT_BINDER := true
 
 TARGET_CPU_CORTEX_A53 := true
 
-TARGET_BOOTLOADER_BOARD_NAME := mt6735
+TARGET_BOOTLOADER_BOARD_NAME := mt6797
 
 # MTK Hardware
 BOARD_HAS_MTK_HARDWARE := true
