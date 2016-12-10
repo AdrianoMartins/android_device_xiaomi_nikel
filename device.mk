@@ -1,5 +1,3 @@
-$(call inherit-product, vendor/xiaomi/nikel/nikel-vendor-blobs.mk)
-
 LOCAL_PATH := device/xiaomi/nikel
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -11,13 +9,20 @@ PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 # Recovery allowed devices
 TARGET_OTA_ASSERT_DEVICE := nikel
 
+# Kernel
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := device/xiaomi/nikel/prebuilt/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES := \
+	$(LOCAL_KERNEL):kernel
+
+# Libs
 PRODUCT_PACKAGES += \
    libmtk_symbols \
    libstlport
-
-# Hack to fix asec on emulated sdcard
-PRODUCT_PACKAGES += \
-    asec_helper
 
 # Audio
 PRODUCT_PACKAGES += \
@@ -28,6 +33,7 @@ PRODUCT_PACKAGES += \
     libaudio-resampler \
     tinymix \
     libtinyalsa
+    
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/audio/audio_device.xml:system/etc/audio_device.xml \
     $(LOCAL_PATH)/configs/audio/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
@@ -179,14 +185,6 @@ PRODUCT_PACKAGES += \
     libfmjni \
     FMRadio
 
-# NFC
-PRODUCT_PACKAGES += \
-    com.android.nfc_extras \
-    libmtknfc_dynamic_load_jni \
-    libnfc_mt6605_jni \
-    Nfc \
-    Tag
-
 # Gello
 PRODUCT_PACKAGES += \
     Gello
@@ -215,8 +213,23 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     resize2fs \
     setup_fs
+    
+ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
+ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
+ADDITIONAL_DEFAULT_PROPERTIES += ro.debuggable=1
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+     ro.debuggable=1 \
+     ro.adb.secure=0 \
+     ro.secure=0
+     
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.kernel.android.checkjni=0
+
+# Blobs
+$(call inherit-product, vendor/xiaomi/nikel/nikel-vendor.mk)
+
 # Dalvik/HWUI
-$(call inherit-product-if-exists, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product-if-exists, frameworks/native/build/phone-xhdpi-3072-dalvik-heap.mk)

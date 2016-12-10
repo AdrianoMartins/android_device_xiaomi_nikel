@@ -7,9 +7,9 @@
  * reproduction, modification, use or disclosure of MediaTek Software, and
  * information contained herein, in whole or in part, shall be strictly
  * prohibited.
- *
+ * 
  * MediaTek Inc. (C) 2010. All rights reserved.
- *
+ * 
  * BY OPENING THIS FILE, RECEIVER HEREBY UNEQUIVOCALLY ACKNOWLEDGES AND AGREES
  * THAT THE SOFTWARE/FIRMWARE AND ITS DOCUMENTATIONS ("MEDIATEK SOFTWARE")
  * RECEIVED FROM MEDIATEK AND/OR ITS REPRESENTATIVES ARE PROVIDED TO RECEIVER
@@ -138,8 +138,15 @@ char const*const KEYBOARD_FILE
 char const*const BUTTON_FILE
         = "/sys/class/leds/button-backlight/brightness";
 
+
+static void handle_notification_battery_locked(struct light_device_t* dev);
+static int set_speaker_light_locked(struct light_device_t* dev,struct light_state_t const* state);
+
+
+
+
 //ALPS0804285 add for delay
-int led_wait_delay(int ms)
+int led_wait_delay(int ms) 
 {
 	struct timespec req = {.tv_sec = 0, .tv_nsec = ms*1000000};
 	struct timespec rem;
@@ -261,7 +268,7 @@ blink_red(int level, int onMS, int offMS)
 	}
 	else {
 		write_str(RED_TRIGGER_FILE, "none");
-        	write_int(RED_LED_FILE, 255); // default full brightness
+        	write_int(RED_LED_FILE, level); // default full brightness
 	}
 
 	preStatus = nowStatus;
@@ -305,7 +312,51 @@ blink_green(int level, int onMS, int offMS)
 	}
 	else {
 		write_str(GREEN_TRIGGER_FILE, "none");
-        	write_int(GREEN_LED_FILE, 255); // default full brightness
+        	write_int(GREEN_LED_FILE, level); // default full brightness
+	}
+
+	preStatus = nowStatus;
+
+	return 0;
+}
+
+static int
+blink_blue(int level, int onMS, int offMS)
+{
+	static int preStatus = 0; // 0: off, 1: blink, 2: no blink
+	int nowStatus;
+	int i = 0;
+
+	if (level == 0)
+		nowStatus = 0;
+	else if (onMS && offMS)
+		nowStatus = 1;
+	else
+		nowStatus = 2;
+
+	if (preStatus == nowStatus)
+		return -1;
+
+#ifdef LIGHTS_DBG_ON
+	ALOGD("blink_blue, level=%d, onMS=%d, offMS=%d\n", level, onMS, offMS);
+#endif
+	if (nowStatus == 0) {
+        	write_int(BLUE_LED_FILE, 0);
+	}
+	else if (nowStatus == 1) {
+//        	write_int(BLUE_LED_FILE, level); // default full brightness
+		write_str(BLUE_TRIGGER_FILE, "timer");
+		while (((access(BLUE_DELAY_OFF_FILE, F_OK) == -1) || (access(BLUE_DELAY_OFF_FILE, R_OK|W_OK) == -1)) && i<10) {
+			ALOGD("BLUE_DELAY_OFF_FILE doesn't exist or cannot write!!\n");
+			led_wait_delay(5);//sleep 5ms for wait kernel LED class create led delay_off/delay_on node of fs
+			i++;
+		}
+		write_int(BLUE_DELAY_OFF_FILE, offMS);
+		write_int(BLUE_DELAY_ON_FILE, onMS);
+	}
+	else {
+		write_str(BLUE_TRIGGER_FILE, "none");
+        	write_int(BLUE_LED_FILE, level); // default full brightness
 	}
 
 	preStatus = nowStatus;
@@ -347,11 +398,28 @@ set_light_backlight(struct light_device_t* dev,
 {
     int err = 0;
     int brightness = rgb_to_brightness(state);
+	struct light_state_t off_state = {
+        .color = 0,
+        .flashMode = 0,
+        .flashOnMS = 0,
+        .flashOffMS = 0,
+        .brightnessMode = 0,
+    };
+
+	
     pthread_mutex_lock(&g_lock);
     g_backlight = brightness;
+	if (is_lit(&g_battery) || is_lit(&g_notification)) {
+        if (g_backlight) {
+            set_speaker_light_locked(dev, &off_state);
+        }
+    }
     err = write_int(LCD_FILE, brightness);
     if (g_haveTrackballLight) {
         handle_trackball_light_locked(dev);
+    }
+	if (g_backlight==0) {
+        handle_notification_battery_locked(dev);
     }
     pthread_mutex_unlock(&g_lock);
     return err;
@@ -387,7 +455,7 @@ set_speaker_light_locked(struct light_device_t* dev,
         struct light_state_t const* state)
 {
     int len;
-    int alpha, red, green;
+    int alpha, red, green, blue;
     int onMS, offMS;
     unsigned int colorRGB;
 
@@ -414,31 +482,67 @@ set_speaker_light_locked(struct light_device_t* dev,
     if (alpha) {
     	red = (colorRGB >> 16) & 0xFF;
     	green = (colorRGB >> 8) & 0xFF;
+    	blue = colorRGB & 0xFF;
     } else { // alpha = 0 means turn the LED off
-    	red = green = 0;
+    	red = green = blue = 0;
     }
-
+#if 0
     if (red) {
-        if (colorRGB == -40448) { // orange (#ff6200)
-            blink_green(red, onMS, offMS);
-            blink_red(red, onMS, offMS);
-        } else {
-            blink_green(0, 0, 0);
-            blink_red(red, onMS, offMS);
-        }
+        blink_green(0, 0, 0);
+        blink_blue(0, 0, 0);
+        blink_red(red, onMS, offMS);
     }
     else if (green) {
         blink_red(0, 0, 0);
+        blink_blue(0, 0, 0);
         blink_green(green, onMS, offMS);
+    }
+    else if (blue) {
+        blink_red(0, 0, 0);
+        blink_green(0, 0, 0);
+        blink_blue(blue, onMS, offMS);
     }
     else {
         blink_red(0, 0, 0);
         blink_green(0, 0, 0);
+        blink_blue(0, 0, 0);
     }
+#else
+
+	if((red&green)||(red&blue)||(green&blue)){     
+		/*For 3led SYNC*/
+		blink_red(0, 0, 0);
+		blink_green(0, 0, 0);
+		blink_blue(0, 0, 0);
+		led_wait_delay(200);
+	}
+
+		if (red){
+			blink_red(red, onMS, offMS);
+		}
+		else{
+			blink_red(0, 0, 0);
+		}
+		if (green){
+			blink_green(green, onMS, offMS);
+		}
+		else{
+			blink_green(0, 0, 0);
+		}
+		if (blue){
+			blink_blue(blue, onMS, offMS);
+		}
+		else{
+			blink_blue(0, 0, 0);
+		}
+	
+#endif
+
 
     return 0;
 }
 
+#if 0
 static void
 handle_speaker_battery_locked(struct light_device_t* dev)
 {
@@ -449,6 +553,21 @@ handle_speaker_battery_locked(struct light_device_t* dev)
         set_speaker_light_locked(dev, &g_notification);
     }
 }
+#endif
+
+static void
+handle_notification_battery_locked(struct light_device_t* dev)
+{
+	if(g_backlight == 0){
+		if (is_lit(&g_notification)) {
+        	set_speaker_light_locked(dev, &g_notification);
+	    } else {
+	    	set_speaker_light_locked(dev, &g_notification);
+	    	set_speaker_light_locked(dev, &g_battery);       
+	    }
+	}
+}
+
 
 static int
 set_light_battery(struct light_device_t* dev,
@@ -459,7 +578,7 @@ set_light_battery(struct light_device_t* dev,
     if (g_haveTrackballLight) {
         set_speaker_light_locked(dev, state);
     }
-    handle_speaker_battery_locked(dev);
+    handle_notification_battery_locked(dev);
     pthread_mutex_unlock(&g_lock);
     return 0;
 }
@@ -475,7 +594,7 @@ set_light_notifications(struct light_device_t* dev,
     if (g_haveTrackballLight) {
         handle_trackball_light_locked(dev);
     }
-    handle_speaker_battery_locked(dev);
+    handle_notification_battery_locked(dev);
     pthread_mutex_unlock(&g_lock);
     return 0;
 }

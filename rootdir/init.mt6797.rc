@@ -66,11 +66,11 @@ on init
 
 on charger
     mkdir /dev/block/platform/mtk-msdc.0/by-name 0770 root system
-    symlink /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/logo /dev/block/platform/mtk-msdc.0/by-name/logo
+    symlink /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/logo /dev/block/platform/mtk-msdc.0/by-name/logo
     exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/by-name/logo
     exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/by-name/logo
 
-    mount ext4 /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/system /system ro wait
+    mount ext4 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/system /system ro wait
     chmod 0666 /dev/kmsg
     start fuelgauged
     start kpoc_charger
@@ -82,17 +82,17 @@ on fs
 
     # Workaround for old nvram blobs
     mkdir /dev/block/platform/mtk-msdc.0/by-name 0770 root system
-    symlink /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/nvram /dev/block/platform/mtk-msdc.0/by-name/nvram
-    symlink /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/proinfo /dev/block/platform/mtk-msdc.0/by-name/proinfo
+    symlink /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/nvram /dev/block/platform/mtk-msdc.0/by-name/nvram
+    symlink /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/proinfo /dev/block/platform/mtk-msdc.0/by-name/proinfo
     exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/by-name/nvram
     exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/by-name/nvram
     exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/by-name/proinfo
     exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/by-name/proinfo
 
-    exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/secro
-    exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/secro
-    exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/seccfg
-    exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/11230000.MSDC0/by-name/seccfg
+    exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/secro
+    exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/secro
+    exec /system/bin/chown root:system /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/seccfg
+    exec /system/bin/chmod 0770 /dev/block/platform/mtk-msdc.0/11230000.msdc0/by-name/seccfg
 
     write /proc/bootprof "INIT:Mount_END"
 
