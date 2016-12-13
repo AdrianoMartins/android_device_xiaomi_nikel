@@ -88,7 +88,7 @@ PRODUCT_PACKAGES += \
     fs_config_files
 
 # Dalvik/HWUI
-$(call inherit-product, frameworks/native/build/phone-xhdpi-3072-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
 
 # Common stuff
 $(call inherit-product, vendor/mad/config/common.mk)

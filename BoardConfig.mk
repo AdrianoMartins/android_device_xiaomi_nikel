@@ -31,11 +31,12 @@ TARGET_BOOTLOADER_BOARD_NAME := mt6797
 
 # Ashmem
 DISABLE_ASHMEM_TRACKING := true
+BOARD_NO_SECURE_DISCARD := true
 
 # Kernel
 TARGET_USES_64_BIT_BINDER := true
 TARGET_IS_64_BIT := true
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x40078000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := \
@@ -46,6 +47,11 @@ BOARD_MKBOOTIMG_ARGS := \
 	--second_offset 0x00000000 \
 	--tags_offset 0x03f88000 \
 	--board nikel
+
+# Hack for building without kernel sources
+ifeq ($(TARGET_DEVICE),nikel)
+$(shell mkdir -p $(OUT)/obj/KERNEL_OBJ/usr)
+endif
 
 # Partitions
 BOARD_SYSTEMIMAGE_PARTITION_SIZE:=3221225472
@@ -58,6 +64,7 @@ BOARD_FLASH_BLOCK_SIZE := 131072
 
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_SUPPRESS_SECURE_ERASE := true
 
 # Display
 TARGET_SCREEN_HEIGHT := 1920
