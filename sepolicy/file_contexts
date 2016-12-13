@@ -1,2 +1,0 @@
-# Sysfs nodes
-/sys/devices/bus.2/11008000.I2C1/i2c-1/1-0020/gesture           u:object_r:smartwake_sysfs:s0
