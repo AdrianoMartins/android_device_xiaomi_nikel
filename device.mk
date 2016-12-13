@@ -1,4 +1,4 @@
-LOCAL_PATH := device/jiayu/s3plus_n560a
+LOCAL_PATH := device/xiaomi/nikel
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
@@ -7,7 +7,7 @@ PRODUCT_AAPT_CONFIG := normal xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG := xxhdpi
 
 # Recovery allowed devices
-TARGET_OTA_ASSERT_DEVICE := s3plus_n560a,S3H
+TARGET_OTA_ASSERT_DEVICE := nikel
 
 PRODUCT_PACKAGES += \
    libmtk_symbols \
@@ -87,4 +87,4 @@ $(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 $(call inherit-product, vendor/mad/config/common.mk)
 
 # Vendor
-$(call inherit-product, vendor/jiayu/s3plus_n560a/s3plus_n560a-vendor.mk)
+$(call inherit-product, vendor/xiaomi/nikel/nikel-vendor.mk)
