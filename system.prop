@@ -56,7 +56,7 @@ persist.md.perm.checked=1
 # other things
 ro.mediatek.chip_ver=S01
 ro.mediatek.version.release=ALPS.L1.MP3.V2_VANZO6753.65U.L1_P45
-ro.mediatek.platform=MT6735
+ro.mediatek.platform=MT6797
 bgw.current3gband=0
 ro.sf.hwrotation=0
 persist.mtk.wcn.combo.chipid=-1
