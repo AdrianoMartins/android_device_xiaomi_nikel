@@ -12,6 +12,16 @@ TARGET_OTA_ASSERT_DEVICE := nikel
 PRODUCT_PACKAGES += \
    libmtk_symbols \
    libstlport
+   
+# Kernel
+ifeq ($(TARGET_PREBUILT_KERNEL),)
+	LOCAL_KERNEL := device/xiaomi/nikel/prebuilt/kernel
+else
+	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
+endif
+
+PRODUCT_COPY_FILES := \
+	$(LOCAL_KERNEL):kernel   
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -59,18 +69,15 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal/thermal.off.conf:system/etc/.tp/thermal.off.conf \
     $(LOCAL_PATH)/configs/thermal/.thermal_policy_00:system/etc/.tp/.thermal_policy_00
 
-# NFC
-PRODUCT_PACKAGES += \
-    com.android.nfc_extras \
-    libmtknfc_dynamic_load_jni \
-    libnfc_mt6605_jni \
-    Nfc \
-    Tag
+# Debug
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
+     ro.debuggable=1 \
+     ro.adb.secure=0 \
+     ro.secure=0
 
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/android.hardware.nfc.xml:system/etc/permissions/android.hardware.nfc.xml \
-    frameworks/native/data/etc/android.hardware.nfc.hce.xml:system/etc/permissions/android.hardware.nfc.hce.xml \
-    frameworks/native/data/etc/com.android.nfc_extras.xml:system/etc/permissions/com.android.nfc_extras.xml
+# Optimization     
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.kernel.android.checkjni=0
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -81,7 +88,7 @@ PRODUCT_PACKAGES += \
     fs_config_files
 
 # Dalvik/HWUI
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/phone-xhdpi-3072-dalvik-heap.mk)
 
 # Common stuff
 $(call inherit-product, vendor/mad/config/common.mk)
