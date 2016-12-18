@@ -5,3 +5,5 @@ extern "C" {
         _ZN7android6Parcel13writeString16EPKDsm((char16_t const*)str, len);
     }
 }
+
+extern "C" void RIL_onRequestAck() {}
