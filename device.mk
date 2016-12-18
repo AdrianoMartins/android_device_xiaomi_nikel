@@ -91,7 +91,7 @@ PRODUCT_PACKAGES += \
 $(call inherit-product, frameworks/native/build/phone-xxhdpi-3072-dalvik-heap.mk)
 
 # Common stuff
-$(call inherit-product, vendor/mad/config/common.mk)
+$(call inherit-product, device/xiaomi/nikel/common.mk)
 
 # Vendor
 $(call inherit-product, vendor/xiaomi/nikel/nikel-vendor.mk)

@@ -1,7 +1,7 @@
 # mt6797 platform boardconfig
 LOCAL_PATH := device/xiaomi/nikel
 
-include vendor/mad/config/board.mk
+include device/xiaomi/nikel/board.mk
 
 # Platform
 ARCH_ARM_HAVE_TLS_REGISTER := true
