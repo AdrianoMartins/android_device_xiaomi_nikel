@@ -286,6 +286,8 @@ on post-fs-data
     # Modem related device nodes
     mkdir /data/nvram/md  0770 root system
     mkdir /data/nvram/md2 0770 root system
+    mkdir /data/nvram/md3 0770 root system
+    mkdir /data/md3	0770 root system
 
 #  Build-in Modified - S
 #    insmod /system/lib/modules/ccci_plat.ko
@@ -486,6 +488,16 @@ service ccci_fsd /system/bin/ccci_fsd 0
     oneshot
 
 service ccci_mdinit /system/bin/ccci_mdinit 0
+    user system
+    group radio system
+    oneshot
+
+service ccci3_fsd /system/bin/ccci_fsd 2
+    user radio
+    group radio system
+    oneshot
+
+service ccci3_mdinit /system/bin/ccci_mdinit 2
     user system
     group radio system
     oneshot

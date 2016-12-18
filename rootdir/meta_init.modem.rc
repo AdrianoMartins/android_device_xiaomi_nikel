@@ -4,15 +4,30 @@
 # This is a common source of Android security bugs.
 #
 
-on post-fs
+on post-fs-data
 
-    write /proc/bootprof "post-fs: on meta modem start"
+    write /proc/bootprof "post-fs-data: on meta modem start"
 
     # Modem related device nodes
     mkdir /data/nvram/md  0770 root system
+    mkdir /data/nvram/md3  0770 root system
+    mkdir /data/md3	0770 root system
 
+#  Build-in Modified - S
+#    insmod /system/lib/modules/ccci_plat.ko
+#    insmod /system/lib/modules/ccci.ko
+#  Build-in Modified - E
     chown radio radio /sys/kernel/ccci/boot
 
+#SeLinux
+    mkdir /data/ccci_cfg 0770 system radio
+    restorecon /data/ccci_cfg
+    restorecon_recursive /protect_f
+    restorecon_recursive /protect_s
+
+    # Encrypt phone function
+    setprop vold.post_fs_data_done 1
+    
 service permission_check /system/bin/permission_check
     user root
     group system radio
@@ -28,14 +43,17 @@ service ccci_mdinit /system/bin/ccci_mdinit 0
     group radio system
     oneshot
 
-service ccci_rpcd /system/bin/ccci_rpcd 0
+service ccci3_fsd /system/bin/ccci_fsd 2
     user radio
     group radio system
     oneshot
 
-on post-fs-data
-    # Selinux
-    mkdir /data/ccci_cfg 0770 system radio
-    restorecon /data/ccci_cfg
-    restorecon_recursive /protect_f
-    restorecon_recursive /protect_s
+service ccci3_mdinit /system/bin/ccci_mdinit 2
+    user system
+    group radio system
+    oneshot
+
+service ccci_rpcd /system/bin/ccci_rpcd 0
+    user radio
+    group radio system
+    oneshot
