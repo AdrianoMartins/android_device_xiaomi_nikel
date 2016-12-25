@@ -70,10 +70,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal/.thermal_policy_00:system/etc/.tp/.thermal_policy_00
 
 # Debug
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-     ro.debuggable=1 \
-     ro.adb.secure=0 \
-     ro.secure=0
+ADDITIONAL_DEFAULT_PROPERTIES += ro.adb.secure=0
+ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
+ADDITIONAL_DEFAULT_PROPERTIES += ro.debuggable=1
 
 # Optimization     
 PRODUCT_PROPERTY_OVERRIDES += \
